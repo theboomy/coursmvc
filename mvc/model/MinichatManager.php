@@ -2,7 +2,7 @@
 
 namespace OpenClassrooms\Blog\Model;
 
-require_once("model/Manager.php");
+require_once(__DIR__ . "/Manager.php");
 
 class MinichatManager extends Manager
 {
@@ -15,7 +15,5 @@ class MinichatManager extends Manager
 
         $reqMsg = $db->query('SELECT pseudo, message FROM minichat ORDER BY ID DESC LIMIT 0, 100');
         return $reqMsg;
-
-        //header('Location: view/frontend/template.php');
     }
 }
