@@ -19,7 +19,7 @@
             <input type="submit" value="Envoyer" />
         </form>
         <div class="chat_post">
-            <? include __DIR__ . "../../controller/minichap.php" ?>
+            <? include __DIR__ . "../../controller/minichat.php" ?>
         </div>
     </section>
 
