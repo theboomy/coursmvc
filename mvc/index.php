@@ -44,15 +44,6 @@ try { // On essaie de faire des choses
                 // Autre exception
                 throw new Exception('Aucun commentaires à modifié selectionnés');
             }
-        } elseif ($_GET['action'] == 'miniChat') {
-            if (isset($_POST['pseudo']) && $_POST['message']) {
-                if (!empty($_POST['pseudo']) && !empty($_POST['message'])) {
-                    miniChat();
-                } else {
-                    // Erreur ! On arrête tout, on envoie une exception, donc au saute directement au catch
-                    throw new Exception('Pseudo ou Message manquant');
-                }
-            }
         }
     } else {
         listPosts();
