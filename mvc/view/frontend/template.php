@@ -11,7 +11,7 @@
 
     <h1>Hello world</h1>
     <?= $content ?>
-
+    <p>Test</p>
     <section class="chat">
         <form action="index.php?action=miniChat" method="post">
             <label for="pseudo">Pseudo :</label> <input type="text" name="pseudo" id="pseudo" require /><br />
