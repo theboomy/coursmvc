@@ -19,7 +19,12 @@
             <input type="submit" value="Envoyer" />
         </form>
         <div class="chat_post">
-            <? include __DIR__ . "../../controller/minichat.php" ?>
+            <?php if (isset($_POST['pseudo']) && isset($_POST['message'])) {
+            ?>
+                <? include __DIR__ . "/../../controller/minichat.php" ?>
+            <?php
+            }
+            ?>
         </div>
     </section>
 
