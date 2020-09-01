@@ -44,6 +44,12 @@ try { // On essaie de faire des choses
                 // Autre exception
                 throw new Exception('Aucun commentaires à modifié selectionnés');
             }
+        } elseif ($_GET['action'] == 'miniChat') {
+            if (isset($_POST['pseudo']) && $_POST['message']) {
+                miniChat($_POST['pseudo'], $_POST['message']);
+            } else {
+                throw new Exception('Aucun commentaires selectionnés');
+            }
         }
     } else {
         listPosts();

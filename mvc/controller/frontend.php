@@ -64,3 +64,12 @@ function editedComment($updateId, $updateComment)
         header('Location: index.php?action=post&id=' . $comment['post_id']);
     }
 }
+
+function miniChat($pseudo, $message)
+{
+    $minichatManager = new MinichatManager();
+
+    $message = $minichatManager->dbMinichat($pseudo, $message);
+
+    require(__DIR__ . '/minichat.php');
+}
