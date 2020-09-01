@@ -1,8 +1,6 @@
 <?php
 require('controller/frontend.php');
 
-require('controller/minichat.php');
-
 try { // On essaie de faire des choses
     if (isset($_GET['action'])) {
         if ($_GET['action'] == 'listPosts') {

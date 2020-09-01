@@ -71,5 +71,5 @@ function miniChat($pseudo, $message)
 
     $message = $minichatManager->dbMinichat($pseudo, $message);
 
-    require(__DIR__ . '/minichat.php');
+    header('Location: index.php');
 }
