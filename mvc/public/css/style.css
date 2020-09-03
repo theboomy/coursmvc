@@ -27,21 +27,23 @@ a
 }
 
 .chat{
-    width: 250px;
-    height: 200px;
+    width: 400px;
     box-shadow: 9px 9px 7px 1px rgba(0,0,0,0.75);
     padding: 5px;
     border: 1px solid black;
-    margin-top: 50px;
+    display: flex;
+    flex-direction: row-reverse;
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    justify-content: space-around;
 }
 
 .chat form{
-    width: 100%;
+    width: 50%;
     height: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
-    margin-bottom: 30px;
 }
 
 .chat form #message{
@@ -49,9 +51,8 @@ a
 }
 
 .chat_post{
-    box-shadow: inset -9px 9px 7px 1px rgba(0,0,0,0.75);
-    padding: 10px;
-    height: 300px;    
+    width: 40%;
+    box-shadow: inset -9px 9px 7px 1px rgba(0,0,0,0.75);  
     border: 1px solid black;
     overflow-y: scroll;
 }

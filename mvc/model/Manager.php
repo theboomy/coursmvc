@@ -6,7 +6,11 @@ class Manager
 {
     protected function dbConnect()
     {
-        $db = new \PDO('mysql:host=localhost;dbname=test;charset=utf8', 'root', '');
-        return $db;
+        $host_name = 'localhost';
+        $database = 'test';
+        $user_name = 'root';
+        $password = '';
+        $dbh = new \PDO("mysql:host=$host_name; dbname=$database; charset=utf8", $user_name, $password);
+        return $dbh;
     }
 }
