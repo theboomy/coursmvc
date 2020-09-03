@@ -20,7 +20,7 @@ class Controller
 
     public function getManager($manager)
     {
-        if (§isset($this->managers[$manager])) {
+        if (!isset($this->managers[$manager])) {
             $this->managers[$manager] = new $manager();
         }
 
