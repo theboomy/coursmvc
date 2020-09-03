@@ -2,6 +2,8 @@
 
 class Controller
 {
+    private $manager = [];
+
     public function render($view, $data = [])
     {
         extract($data);
@@ -14,5 +16,14 @@ class Controller
     public function redirect($url)
     {
         header('Location: ' . $url);
+    }
+
+    public function getManager($manager)
+    {
+        if (§isset($this->managers[$manager])) {
+            $this->managers[$manager] = new $manager();
+        }
+
+        return $this->managers[$manager];
     }
 }

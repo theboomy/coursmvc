@@ -14,24 +14,17 @@ class FrontController extends Controller
 {
     public function listPosts()
     {
-        $postManager = new PostManager(); // Création d'un objet
-        $posts = $postManager->getPosts(); // Appel d'une fonction de cet objet
-
         $this->render("frontend/listPostView.php", [
-            "posts" => $posts
+            "posts" => $this->getManager(PostManager::class)->getPosts()
         ]);
     }
 
     public function post()
     {
-
-        $postManager = new PostManager();
-        $commentManager = new CommentManager();
-
-        $post = $postManager->getPost($_GET['id']);
-        $comments = $commentManager->getComments($_GET['id']);
-
-        require('view/frontend/postView.php');
+        $this->render("frontend/listPostView.php", [
+            "post" => $this->getManager(PostManager::class)->getPost($_GET['id']),
+            "comments" => $this->getManager(CommentManager::class)->getComments($_GET['id']),
+        ]);
     }
 
     public function addComment($postId, $author, $comment)
