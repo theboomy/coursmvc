@@ -14,14 +14,14 @@ class FrontController extends Controller
 {
     public function listPosts()
     {
-        $this->render("frontend/listPostView.php", [
+        $this->render("frontend/listPostsView.php", [
             "posts" => $this->getManager(PostManager::class)->getPosts()
         ]);
     }
 
     public function post()
     {
-        $this->render("frontend/listPostView.php", [
+        $this->render("frontend/listPostsView.php", [
             "post" => $this->getManager(PostManager::class)->getPost($_GET['id']),
             "comments" => $this->getManager(CommentManager::class)->getComments($_GET['id']),
         ]);
