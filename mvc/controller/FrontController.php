@@ -22,7 +22,7 @@ class FrontController extends Controller
     public function post()
     {
         $this->render("frontend/listPostsView.php", [
-            "post" => $this->getManager(PostManager::class)->getPost($_GET['id']),
+            "posts" => $this->getManager(PostManager::class)->getPost($_GET['id']),
             "comments" => $this->getManager(CommentManager::class)->getComments($_GET['id']),
         ]);
     }

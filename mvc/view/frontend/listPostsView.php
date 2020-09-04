@@ -3,7 +3,7 @@
 
 
 <?php
-while ($data = $post->fetch()) {
+while ($data = $posts->fetch()) {
 ?>
     <div class="news">
         <h3>
