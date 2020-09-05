@@ -1,6 +1,3 @@
-<?php $title = 'Modification de commentaires !'; ?>
-
-<?php ob_start(); ?>
 <h1>Mon super blog !</h1>
 <h3>Modifier votre commentaires :</h3>
 
@@ -17,6 +14,3 @@
         <input type="submit" />
     </div>
 </form>
-
-<?php $content = ob_get_clean(); ?>
-<?php require('template.php'); ?>
