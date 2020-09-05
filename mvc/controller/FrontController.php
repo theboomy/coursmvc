@@ -27,48 +27,42 @@ class FrontController extends Controller
         ]);
     }
 
-    public function addComment($postId, $author, $comment)
+    public function addComment()
     {
         $commentManager = new CommentManager();
 
-        $affectedLines = $commentManager->postComment($postId, $author, $comment);
+        $affectedLines = $commentManager->postComment($_GET["id"], $_POST["author"], $_POST["comment"]);
 
         if ($affectedLines === false) {
             throw new Exception('Impossible d\'ajouter le commentaire !');
         } else {
-            $this->redirect('index.php?action=post&id=' . $postId);
+            $this->redirect('index.php?action=post&id=' . $_GET["id"]);
         }
     }
 
-    public function editComment($commentId)
+    public function editComment()
     {
-        $commentManager = new CommentManager();
-
-        $comment = $commentManager->getEditComment($commentId);
-
-        require('view/frontend/editView.php');
+        $this->render("frontend/editView.php", [
+            "comment" => $this->getManager(CommentManager::class)->getEditComment($_GET["id"])
+        ]);
     }
 
-    public function editedComment($updateId, $updateComment)
+    public function editedComment()
     {
-        $commentManager = new CommentManager();
-
-        $editUp = $commentManager->returnEditComment($updateId, $updateComment);
+        $editUp = $this->getManager(CommentManager::class)->returnEditComment($_GET["id"], $_POST["comment"]);
 
         if ($editUp === false) {
             throw new Exception('Impossible d\'ajouter le commentaire !');
         } else {
-            $comment = $commentManager->getEditComment($updateId);
-            header('Location: index.php?action=post&id=' . $comment['post_id']);
+            $comment = $this->getManager(CommentManager::class)->getEditComment($_GET["id"]);
+            $this->redirect('index.php?action=post&id=' . $comment['post_id']);
         }
     }
 
-    public function miniChat($pseudo, $message)
+    public function miniChat()
     {
-        $minichatManager = new MinichatManager();
+        $message = $this->getManager(MinichatManager::class)->dbMinichat($_POST["pseudo"], $_POST["message"]);
 
-        $message = $minichatManager->dbMinichat($pseudo, $message);
-
-        header('Location: index.php');
+        $this->redirect('index.php');
     }
 }
