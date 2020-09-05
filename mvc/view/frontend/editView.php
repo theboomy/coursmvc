@@ -1,3 +1,4 @@
+<?php $title = "Edition de commentaire"; ?>
 <h1>Mon super blog !</h1>
 <h3>Modifier votre commentaires :</h3>
 

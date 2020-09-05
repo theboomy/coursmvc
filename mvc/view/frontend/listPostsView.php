@@ -1,3 +1,4 @@
+<?php $title = "Mon super blog !"; ?>
 <h1>Mon super blog !</h1>
 <p>Derniers billets du blog :</p>
 
