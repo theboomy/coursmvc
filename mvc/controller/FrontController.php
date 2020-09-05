@@ -29,9 +29,7 @@ class FrontController extends Controller
 
     public function addComment()
     {
-        $commentManager = new CommentManager();
-
-        $affectedLines = $commentManager->postComment($_GET["id"], $_POST["author"], $_POST["comment"]);
+        $affectedLines = $this->getManager(CommentManager::class)->postComment($_GET["id"], $_POST["author"], $_POST["comment"]);
 
         if ($affectedLines === false) {
             throw new Exception('Impossible d\'ajouter le commentaire !');
@@ -61,7 +59,7 @@ class FrontController extends Controller
 
     public function miniChat()
     {
-        $message = $this->getManager(MinichatManager::class)->dbMinichat($_POST["pseudo"], $_POST["message"]);
+        $this->getManager(MinichatManager::class)->dbMinichat($_POST["pseudo"], $_POST["message"]);
 
         $this->redirect('index.php');
     }
