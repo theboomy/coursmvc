@@ -15,6 +15,14 @@ return [
         "controller" => FrontController::class,
         "method" => "addPost",
     ],
+    "editPost" => [
+        "controller" => FrontController::class,
+        "method" => "editPost",
+    ],
+    "editedPost" => [
+        "controller" => FrontController::class,
+        "method" => "editedPost",
+    ],
     "addComment" => [
         "controller" => FrontController::class,
         "method" => "addComment",

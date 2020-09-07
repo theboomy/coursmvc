@@ -41,6 +41,24 @@ class FrontController extends Controller
         }
     }
 
+    public function editPost()
+    {
+        $this->render("frontend/editPostView.php", [
+            "post" => $this->getManager(PostManager::class)->getEditPost($_GET["id"])
+        ]);
+    }
+
+    public function editedPost()
+    {
+        $editUp = $this->getManager(PostManager::class)->returnEditPost($_GET["id"], $_POST["title"], $_POST["content"]);
+
+        if ($editUp === false) {
+            throw new Exception('Impossible d\'ajouter le commentaire !');
+        } else {
+            $this->redirect('index.php');
+        }
+    }
+
     public function addComment()
     {
         $affectedLines = $this->getManager(CommentManager::class)->postComment($_GET["id"], $_POST["author"], $_POST["comment"]);

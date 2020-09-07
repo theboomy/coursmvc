@@ -32,4 +32,22 @@ class PostManager extends Manager
 
         return $affectedLines;
     }
+
+    public function getEditPost($postId)
+    {
+        $db = $this->dbConnect();
+        $post = $db->prepare('SELECT id, title, content, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date_fr FROM posts WHERE id = ?');
+        $post->execute(array($postId));
+
+        return $post->fetch();
+    }
+
+    public function returnEditPost($updateId, $updateTitle, $updateContent)
+    {
+        $db = $this->dbConnect();
+        $post = $db->prepare('UPDATE posts SET title = ?, content = ?, creation_date = NOW() WHERE id = ?');
+        $updatedPost = $post->execute(array($updateTitle, $updateContent, $updateId));
+
+        return $updatedPost;
+    }
 }

@@ -10,6 +10,7 @@ while ($data = $posts->fetch()) {
         <h3>
             <?= htmlspecialchars($data['title']) ?>
             <em>le <?= $data['creation_date_fr'] ?></em>
+            <a href="index.php?action=editPost&amp;id=<?= $data['id'] ?>">Modifier</a>
         </h3>
 
         <p>
