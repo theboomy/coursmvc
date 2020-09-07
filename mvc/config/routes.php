@@ -11,6 +11,10 @@ return [
         "controller" => FrontController::class,
         "method" => "post",
     ],
+    "addPost" => [
+        "controller" => FrontController::class,
+        "method" => "addPost",
+    ],
     "addComment" => [
         "controller" => FrontController::class,
         "method" => "addComment",

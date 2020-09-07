@@ -18,7 +18,21 @@ while ($data = $posts->fetch()) {
             <em><a href="index.php?action=post&amp;id=<?= $data['id'] ?>">Commentaires</a></em>
         </p>
     </div>
+
 <?php
 }
 $posts->closeCursor();
 ?>
+<form action="index.php?action=addPost" method="post">
+    <div>
+        <label for="title">Titre</label><br />
+        <input type="text" id="title" name="title" />
+    </div>
+    <div>
+        <label for="content">Contenu</label><br />
+        <textarea id="content" name="content"></textarea>
+    </div>
+    <div>
+        <input type="submit" />
+    </div>
+</form>

@@ -2,7 +2,7 @@
 
 class Controller
 {
-    private $manager = [];
+    private $managers = [];
 
     public function render($view, $data = [])
     {

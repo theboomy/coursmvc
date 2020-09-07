@@ -21,10 +21,24 @@ class FrontController extends Controller
 
     public function post()
     {
+        if (!isset($_GET['id']) || $_GET['id'] === "") {
+            throw new InvalidArgumentException();
+        }
         $this->render("frontend/postView.php", [
             "post" => $this->getManager(PostManager::class)->getPost($_GET['id']),
             "comments" => $this->getManager(CommentManager::class)->getComments($_GET['id']),
         ]);
+    }
+
+    public function addPost()
+    {
+        $affectedLines = $this->getManager(PostManager::class)->addNewPost($_POST["title"], $_POST["content"]);
+
+        if ($affectedLines === false) {
+            throw new Exception('Impossible d\'ajouter le commentaire !');
+        } else {
+            $this->redirect('index.php');
+        }
     }
 
     public function addComment()
@@ -40,6 +54,9 @@ class FrontController extends Controller
 
     public function editComment()
     {
+        if (!isset($_GET['id']) || $_GET['id'] === "") {
+            throw new InvalidArgumentException();
+        }
         $this->render("frontend/editView.php", [
             "comment" => $this->getManager(CommentManager::class)->getEditComment($_GET["id"])
         ]);
