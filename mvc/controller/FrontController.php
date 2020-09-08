@@ -94,6 +94,7 @@ class FrontController extends Controller
 
     public function miniChat()
     {
+
         $this->getManager(MinichatManager::class)->dbMinichat($_POST["pseudo"], $_POST["message"]);
 
         $this->redirect('index.php');

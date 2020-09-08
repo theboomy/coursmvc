@@ -6,7 +6,7 @@
 <p>Pseudo : <?= $comment['author'] ?></p>
 <p>Commentaire : <?= $comment['comment'] ?></p>
 
-<form action="index.php?action=editedComment" method="post">
+<form action="index.php?action=editedComment&amp;id=<?= $comment['id'] ?>" method="post">
     <div>
         <label for="comment">Modification du commentaire</label><br />
         <textarea id="comment" name="comment"><?= $comment['comment'] ?></textarea>

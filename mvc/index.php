@@ -1,5 +1,8 @@
 <?php
 
+session_start();
+
+
 $routes = require(__DIR__ . "/config/routes.php");
 
 try {
