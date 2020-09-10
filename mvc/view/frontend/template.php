@@ -8,6 +8,7 @@
 </head>
 
 <body>
+    <a href="index.php?action=createNewMember">Inscription</a>
 
     <h1>Hello world</h1>
 

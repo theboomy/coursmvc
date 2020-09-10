@@ -3,6 +3,10 @@
 require(__DIR__ . "/../controller/FrontController.php");
 
 return [
+    "createNewMember" => [
+        "controller" => FrontController::class,
+        "method" => "createNewMember",
+    ],
     "listPosts" => [
         "controller" => FrontController::class,
         "method" => "listPosts",

@@ -1,17 +1,27 @@
 <?php
 
+use OpenClassrooms\Blog\Model\MembersManager;
 use \OpenClassrooms\Blog\Model\PostManager;
 use \OpenClassrooms\Blog\Model\CommentManager;
 use OpenClassrooms\Blog\Model\MinichatManager;
 
 // Chargement des classes
 require_once('Controller.php');
+require_once('model/MembersManager.php');
 require_once('model/PostManager.php');
 require_once('model/CommentManager.php');
 require_once('model/MinichatManager.php');
 
 class FrontController extends Controller
 {
+
+    public function createNewMember()
+    {
+        $this->render("frontend/inscriptionView.php", [
+            "member" => $this->getManager(MembersManager::class)->newMember($_POST["pseudo"], $_POST["password"], $_POST["email"])
+        ]);
+    }
+
     public function listPosts()
     {
         $this->render("frontend/listPostsView.php", [
@@ -94,7 +104,6 @@ class FrontController extends Controller
 
     public function miniChat()
     {
-
         $this->getManager(MinichatManager::class)->dbMinichat($_POST["pseudo"], $_POST["message"]);
 
         $this->redirect('index.php');
