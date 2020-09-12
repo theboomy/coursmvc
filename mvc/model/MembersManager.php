@@ -17,7 +17,7 @@ class MembersManager extends Manager
     public function newMember($pseudo, $pass_hache, $email)
     {
         $db = $this->dbConnect();
-        $pass_hache = password_hash($_POST['pass'], PASSWORD_DEFAULT);
+        $pass_hache = password_hash($_POST['password'], PASSWORD_DEFAULT);
         $members = $db->prepare('INSERT INTO members(pseudo, pass, email, date_inscription) VALUES(?, ?, ?, NOW())');
 
         $affectedLines = $members->execute(array($pseudo, $pass_hache, $email));

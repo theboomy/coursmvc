@@ -1,7 +1,7 @@
 <?php $title = "Edition de commentaire"; ?>
 
-<p><a href="index.php?action=post&amp;id=<?= $comment['post_id'] ?>">Retour à la liste des billets</a></p>
-<h3>Modifier votre commentaires :</h3>
+<p><a href="index.php?action=post&amp;id=<?= $comment['post_id'] ?>">Retour au billet</a></p>
+<h3>Modifier votre commentaire :</h3>
 
 
 <p>Pseudo : <?= $comment['author'] ?></p>

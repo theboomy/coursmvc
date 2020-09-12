@@ -44,9 +44,9 @@ class FrontController extends Controller
 
         $resultat = $this->getManager(MembersManager::class)->newConnexion($_POST['pseudo']);
 
-        $test_password = password_verify($_POST['password'], $resultat['pass']);
+        var_dump(password_verify($_POST['password'], $resultat['pass']));
 
-        if ($test_password) {
+        if (password_verify($_POST['password'], $resultat['pass'])) {
             $_SESSION['id'] = $resultat['id'];
             $_SESSION['pseudo'] = $_POST['pseudo'];
             $this->redirect('index.php');
@@ -59,9 +59,6 @@ class FrontController extends Controller
     {
         $_SESSION = array();
         session_destroy();
-
-        setcookie('login', '');
-        setcookie('pass_hache', '');
 
         $this->redirect("index.php");
     }
