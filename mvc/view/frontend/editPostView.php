@@ -1,19 +1,28 @@
 <?php $title = "Edition de post"; ?>
-<h1>Mon super blog !</h1>
+
+<p><a href="index.php">Retour à la liste des billets</a></p>
 <h3>Modifie ton post !</h3>
 
 
-<p>Titre : <?= $post['title'] ?></p>
-<p>Commentaire : <?= $post['content'] ?></p>
+<div class="jumbotron">
+    <h1 class="display-4"> <?= $post['title'] ?></h1>
+    <hr class="my-4">
+    <p>Commentaire : <?= $post['content'] ?></p>
+</div>
+
+
+
 
 <form action="index.php?action=editedPost&amp;id=<?= $post['id'] ?>" method="post">
-    <div>
+    <div class="form-group">
         <label for="title">Modification du titre</label><br />
-        <textarea id="title" name="title"><?= $post['title'] ?></textarea>
+        <textarea class="form-control" id="title" name="title"><?= $post['title'] ?></textarea>
+    </div>
+    <div class="form-group">
         <label for="content">Modification du contenu</label><br />
-        <textarea id="content" name="content"><?= $post['content'] ?></textarea>
+        <textarea class="form-control" id="content" name="content" rows="5"><?= $post['content'] ?></textarea>
     </div>
     <div>
-        <input type="submit" />
+        <button type="submit" class="btn btn-primary">Send</button>
     </div>
 </form>

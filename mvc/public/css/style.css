@@ -1,61 +1,44 @@
-h1, h3
-{
-    text-align:center;
-}
-h3
-{
-    background-color:black;
-    color:white;
-    font-size:0.9em;
-    margin-bottom:0px;
-}
-.news p
-{
-    background-color:#CCCCCC;
-    margin-top:0px;
-}
-.news
-{
-    width:70%;
-    margin:auto;
+body{
+    padding-bottom: 50px;
 }
 
-a
-{
-    text-decoration: none;
-    color: blue;
+nav{
+    margin-bottom: 50px;
 }
 
-.chat{
-    width: 600px;
-    height: 300px;
-    box-shadow: 9px 9px 7px 1px rgba(0,0,0,0.75);
-    padding: 5px;
-    border: 1px solid black;
-    display: flex;
-    flex-direction: row-reverse;
-    position: absolute;
-    bottom: 10px;
-    right: 10px;
-    justify-content: space-around;
+#live_chat{
+    margin-left: 20px;    
+    width: 250px;
+}
+.header_chat{
+    background-color: #007bff;
+    font-size: 1.5em;
+    text-align: center;
+    cursor: pointer;
+}
+.header_chat:hover{
+    background-color: #0073ee;
 }
 
-.chat form{
-    width: 30%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-}
-
-.chat form #message{
-    height: 100px;
-}
-
-.chat_post{
-    width: 60%;
-    box-shadow: inset -9px 9px 7px 1px rgba(0,0,0,0.75);  
-    border: 1px solid black;
-    overflow-y: scroll;
+.chat .chat_post{
     display: flex;
     flex-direction: column-reverse;
+    overflow-y: scroll;
+    max-height: 250px;
+    background-color: #007bff83;
+    padding-left: 5px;
+    scrollbar-width: thin;
+    scrollbar-color:#007bff;
+}
+
+.chat_post::-webkit-scrollbar{
+    width: 10px;
+}
+
+.chat_post::-webkit-scrollbar-thumb{    
+    background-color: #007bff;
+}
+
+.chat_post::-webkit-scrollbar-track{
+    background: #007bff83;
 }

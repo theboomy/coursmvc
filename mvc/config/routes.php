@@ -3,9 +3,26 @@
 require(__DIR__ . "/../controller/FrontController.php");
 
 return [
+    "incription" => [
+        "controller" => FrontController::class,
+        "method" => "incription",
+    ],
     "createNewMember" => [
         "controller" => FrontController::class,
         "method" => "createNewMember",
+    ],
+    "connect" => [
+        "controller" => FrontController::class,
+        "method" => "connect",
+    ],
+    "newConnexion" => [
+        "controller" => FrontController::class,
+        "method" => "newConnexion",
+    ],
+
+    "deconnexion" => [
+        "controller" => FrontController::class,
+        "method" => "deconnexion",
     ],
     "listPosts" => [
         "controller" => FrontController::class,

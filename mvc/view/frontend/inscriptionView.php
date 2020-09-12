@@ -9,11 +9,11 @@
     </div>
     <div>
         <label for="email">Email</label><br />
-        <textarea id="email" name="email"></textarea>
+        <input type="email" id="email" name="email"></input>
     </div>
     <div>
         <label for="password">Password</label><br />
-        <textarea id="password" name="password"></textarea>
+        <input type="password" id="password" name="password"></input>
     </div>
     <div>
         <input type="submit" />

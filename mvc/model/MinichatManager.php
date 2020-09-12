@@ -20,7 +20,7 @@ class MinichatManager extends Manager
     {
         $db = $this->dbConnect();
 
-        $reqMsg = $db->query('SELECT pseudo, message FROM minichat ORDER BY ID DESC LIMIT 0, 15');
+        $reqMsg = $db->query('SELECT pseudo, message FROM minichat ORDER BY ID DESC LIMIT 0, 100');
 
         return $reqMsg;
     }

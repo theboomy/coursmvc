@@ -14,12 +14,56 @@ require_once('model/MinichatManager.php');
 
 class FrontController extends Controller
 {
+    public function incription()
+    {
+        $this->render("frontend/inscriptionView.php", [
+            $this->getManager(MembersManager::class)->member()
+        ]);
+    }
 
     public function createNewMember()
     {
-        $this->render("frontend/inscriptionView.php", [
-            "member" => $this->getManager(MembersManager::class)->newMember($_POST["pseudo"], $_POST["password"], $_POST["email"])
+        $affectedLines = $this->getManager(MembersManager::class)->newMember($_POST["pseudo"], $_POST["password"], $_POST["email"]);
+
+        if ($affectedLines === false) {
+            throw new Exception('Impossible d\'ajouter le commentaire !');
+        } else {
+            $this->redirect('index.php?action=connect');
+        }
+    }
+
+    public function connect()
+    {
+        $this->render("frontend/connexionView.php", [
+            $this->getManager(MembersManager::class)->connexion()
         ]);
+    }
+
+    public function newConnexion()
+    {
+
+        $resultat = $this->getManager(MembersManager::class)->newConnexion($_POST['pseudo']);
+
+        $test_password = password_verify($_POST['password'], $resultat['pass']);
+
+        if ($test_password) {
+            $_SESSION['id'] = $resultat['id'];
+            $_SESSION['pseudo'] = $_POST['pseudo'];
+            $this->redirect('index.php');
+        } else {
+            echo 'Mauvais identifiant ou mot de passe !';
+        }
+    }
+
+    public function deconnexion()
+    {
+        $_SESSION = array();
+        session_destroy();
+
+        setcookie('login', '');
+        setcookie('pass_hache', '');
+
+        $this->redirect("index.php");
     }
 
     public function listPosts()
@@ -104,7 +148,7 @@ class FrontController extends Controller
 
     public function miniChat()
     {
-        $this->getManager(MinichatManager::class)->dbMinichat($_POST["pseudo"], $_POST["message"]);
+        $this->getManager(MinichatManager::class)->dbMinichat($_SESSION['pseudo'], $_POST["message"]);
 
         $this->redirect('index.php');
     }
