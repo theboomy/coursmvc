@@ -23,12 +23,19 @@ class FrontController extends Controller
 
     public function createNewMember()
     {
-        $affectedLines = $this->getManager(MembersManager::class)->newMember($_POST["pseudo"], $_POST["password"], $_POST["email"]);
+        if (isset($_POST['email']) || isset($_POST['pseudo']) || isset($_POST['password'])){
+            $_POST['email'] = htmlspecialchars($_POST['email']);
+            $_POST['pseudo'] = htmlspecialchars($_POST['pseudo']);
+            $_POST['password'] = htmlspecialchars($_POST['password']);
 
-        if ($affectedLines === false) {
-            throw new Exception('Impossible d\'ajouter le commentaire !');
-        } else {
-            $this->redirect('index.php?action=connect');
+            if (preg_match("#^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$#", $_POST['email'])){
+                $this->getManager(MembersManager::class)->newMember($_POST["pseudo"], $_POST["password"], $_POST["email"]);
+                $this->redirect('index.php?action=connect');
+            } else {
+                throw new InvalidArgumentException("Email incorrect");
+            }
+        } else {            
+            throw new InvalidArgumentException("Element manquant");
         }
     }
 
@@ -41,17 +48,20 @@ class FrontController extends Controller
 
     public function newConnexion()
     {
+        if (isset($_POST['pseudo']) AND isset($_POST['password'])){
 
-        $resultat = $this->getManager(MembersManager::class)->newConnexion($_POST['pseudo']);
+            $_POST['pseudo'] = htmlspecialchars($_POST['pseudo']);
+            $_POST['password'] = htmlspecialchars($_POST['password']);
 
-        var_dump(password_verify($_POST['password'], $resultat['pass']));
-
-        if (password_verify($_POST['password'], $resultat['pass'])) {
-            $_SESSION['id'] = $resultat['id'];
-            $_SESSION['pseudo'] = $_POST['pseudo'];
-            $this->redirect('index.php');
-        } else {
-            echo 'Mauvais identifiant ou mot de passe !';
+            $resultat = $this->getManager(MembersManager::class)->newConnexion($_POST['pseudo']);
+    
+            if (password_verify($_POST['password'], $resultat['pass']) || $_POST['pseudo'] === $resultat['pseudo']) {
+                $_SESSION['id'] = $resultat['id'];
+                $_SESSION['pseudo'] = $_POST['pseudo'];
+                $this->redirect('index.php');
+            } else {
+                echo 'Mauvais identifiant ou mot de passe !';
+            }
         }
     }
 

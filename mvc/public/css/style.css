@@ -11,13 +11,17 @@ nav{
     width: 250px;
 }
 .header_chat{
-    background-color: #007bff;
     font-size: 1.5em;
     text-align: center;
     cursor: pointer;
+    background: #55b9f3;
+    box-shadow: inset -13px 13px 9px #479aca, inset 13px -13px 9px #63d8ff;
+    transition: 0.5s;    
+    
 }
 .header_chat:hover{
-    background-color: #0073ee;
+    background: #55b9f3;
+    box-shadow: inset -13px -13px 9px #479aca, inset -13px -13px 9px #63d8ff;
 }
 
 .chat .chat_post{
@@ -25,20 +29,29 @@ nav{
     flex-direction: column-reverse;
     overflow-y: scroll;
     max-height: 250px;
-    background-color: #007bff83;
     padding-left: 5px;
     scrollbar-width: thin;
     scrollbar-color:#007bff;
+    background: #55b9f3;
+    box-shadow: inset -13px -13px 9px #479aca, inset 13px 13px 9px #63d8ff;
+    transition: 0.5s;    
 }
 
 .chat_post::-webkit-scrollbar{
-    width: 10px;
+    width: 5px;
 }
 
 .chat_post::-webkit-scrollbar-thumb{    
-    background-color: #007bff;
+    background-color: #63d8ff;
 }
 
 .chat_post::-webkit-scrollbar-track{
-    background: #007bff83;
+    background: #55b9f3;
+}
+
+.btn-outline-secondary{    
+    border-radius: 0 !important;
+    background: #55b9f3 !important;
+    box-shadow: inset -13px -13px 33px #479aca, 
+                inset 13px 13px 33px #63d8ff !important;
 }

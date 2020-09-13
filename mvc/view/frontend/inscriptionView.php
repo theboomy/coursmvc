@@ -3,19 +3,19 @@
 <h1>Inscription</h1>
 
 <form action="index.php?action=createNewMember" method="post">
-    <div>
+    <div class="form-group">
         <label for="pseudo">Pseudo</label><br />
-        <input type="text" id="pseudo" name="pseudo" />
+        <input class="form-control" type="text" id="pseudo" name="pseudo" required/>
     </div>
-    <div>
+    <div class="form-group">
         <label for="email">Email</label><br />
-        <input type="email" id="email" name="email"></input>
+        <input class="form-control" type="email" id="email" name="email" required></input>
     </div>
-    <div>
+    <div class="form-group">
         <label for="password">Password</label><br />
-        <input type="password" id="password" name="password"></input>
+        <input class="form-control" type="password" id="password" name="password" required></input>
     </div>
     <div>
-        <input type="submit" />
+        <input type="submit" class="btn btn-primary" />
     </div>
 </form>
