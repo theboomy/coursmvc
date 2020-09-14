@@ -22,7 +22,7 @@ class FrontController extends Controller
             if (isset($_POST['email'], $_POST['pseudo'], $_POST['password']) && !empty($_POST['email']) && !empty($_POST['pseudo']) && !empty($_POST['password'])){
                 $_POST['email'] = htmlspecialchars($_POST['email']);
                 $_POST['pseudo'] = htmlspecialchars($_POST['pseudo']);
-                $_POST['password'] = htmlspecialchars($_POST['password']);    
+                $_POST['password'] = htmlspecialchars($_POST['password']);
                 
                 $resultat = $this->getManager(MembersManager::class)->newConnexion($_POST['pseudo']);
 
@@ -33,7 +33,7 @@ class FrontController extends Controller
                 } else {
                     $this->getManager(MembersManager::class)->newMember($_POST["pseudo"], $_POST["password"], $_POST["email"]);
                     $this->redirect('index.php?action=connect');
-                }                
+                }
             } else {
                 $errors[] = "Erreur formulaire";
             }
@@ -67,8 +67,8 @@ class FrontController extends Controller
             }
         }
         $this->render("frontend/connexionView.php", [
-            "error" => $error              
-        ]);    
+            "error" => $error
+        ]);
     }
 
     public function deconnexion()
