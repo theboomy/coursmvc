@@ -7,17 +7,9 @@ return [
         "controller" => FrontController::class,
         "method" => "incription",
     ],
-    "createNewMember" => [
-        "controller" => FrontController::class,
-        "method" => "createNewMember",
-    ],
     "connect" => [
         "controller" => FrontController::class,
         "method" => "connect",
-    ],
-    "newConnexion" => [
-        "controller" => FrontController::class,
-        "method" => "newConnexion",
     ],
 
     "deconnexion" => [

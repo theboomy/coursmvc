@@ -6,13 +6,6 @@ require_once(__DIR__ . "/Manager.php");
 
 class MembersManager extends Manager
 {
-    public function member()
-    {
-        $db = $this->dbConnect();
-        $req = $db->query('SELECT pseudo, pass, email FROM members');
-
-        return $req;
-    }
 
     public function newMember($pseudo, $pass_hache, $email)
     {
@@ -25,19 +18,11 @@ class MembersManager extends Manager
         return $affectedLines;
     }
 
-    public function connexion()
-    {
-        $db = $this->dbConnect();
-        $req = $db->query('SELECT pseudo, pass, email FROM members');
-
-        return $req;
-    }
-
 
     public function newConnexion($pseudo)
     {
         $db = $this->dbConnect();
-        $req = $db->prepare('SELECT id, pass FROM members WHERE pseudo = ?');
+        $req = $db->prepare('SELECT id, pseudo, pass FROM members WHERE pseudo = ?');
 
         $req->execute(array($pseudo));
 

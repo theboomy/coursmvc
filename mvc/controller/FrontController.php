@@ -16,53 +16,59 @@ class FrontController extends Controller
 {
     public function incription()
     {
-        $this->render("frontend/inscriptionView.php", [
-            $this->getManager(MembersManager::class)->member()
-        ]);
-    }
+        $errors = [];
+        if ($_SERVER["REQUEST_METHOD"] === "POST"){
 
-    public function createNewMember()
-    {
-        if (isset($_POST['email']) || isset($_POST['pseudo']) || isset($_POST['password'])){
-            $_POST['email'] = htmlspecialchars($_POST['email']);
-            $_POST['pseudo'] = htmlspecialchars($_POST['pseudo']);
-            $_POST['password'] = htmlspecialchars($_POST['password']);
+            if (isset($_POST['email'], $_POST['pseudo'], $_POST['password']) && !empty($_POST['email']) && !empty($_POST['pseudo']) && !empty($_POST['password'])){
+                $_POST['email'] = htmlspecialchars($_POST['email']);
+                $_POST['pseudo'] = htmlspecialchars($_POST['pseudo']);
+                $_POST['password'] = htmlspecialchars($_POST['password']);    
+                
+                $resultat = $this->getManager(MembersManager::class)->newConnexion($_POST['pseudo']);
 
-            if (preg_match("#^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$#", $_POST['email'])){
-                $this->getManager(MembersManager::class)->newMember($_POST["pseudo"], $_POST["password"], $_POST["email"]);
-                $this->redirect('index.php?action=connect');
+                if($_POST["pseudo"] === $resultat["pseudo"]){
+                    $errors[] = "Pseudonyme déjà utilisé";
+                } else if (!preg_match("#^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$#", $_POST['email'])){
+                    $errors[] = "Email non valide";
+                } else {
+                    $this->getManager(MembersManager::class)->newMember($_POST["pseudo"], $_POST["password"], $_POST["email"]);
+                    $this->redirect('index.php?action=connect');
+                }                
             } else {
-                throw new InvalidArgumentException("Email incorrect");
+                $errors[] = "Erreur formulaire";
             }
-        } else {            
-            throw new InvalidArgumentException("Element manquant");
         }
+        $this->render("frontend/inscriptionView.php", [
+            "errors" => $errors
+        ]);
     }
 
     public function connect()
     {
-        $this->render("frontend/connexionView.php", [
-            $this->getManager(MembersManager::class)->connexion()
-        ]);
-    }
+        $error = [];
+        if ($_SERVER["REQUEST_METHOD"] === "POST"){
 
-    public function newConnexion()
-    {
-        if (isset($_POST['pseudo']) AND isset($_POST['password'])){
+            if (isset($_POST['pseudo'], $_POST['password']) && !empty($_POST['pseudo']) && !empty($_POST['password'])){
 
-            $_POST['pseudo'] = htmlspecialchars($_POST['pseudo']);
-            $_POST['password'] = htmlspecialchars($_POST['password']);
+                $_POST['pseudo'] = htmlspecialchars($_POST['pseudo']);
+                $_POST['password'] = htmlspecialchars($_POST['password']);
 
-            $resultat = $this->getManager(MembersManager::class)->newConnexion($_POST['pseudo']);
-    
-            if (password_verify($_POST['password'], $resultat['pass']) || $_POST['pseudo'] === $resultat['pseudo']) {
-                $_SESSION['id'] = $resultat['id'];
-                $_SESSION['pseudo'] = $_POST['pseudo'];
-                $this->redirect('index.php');
-            } else {
-                echo 'Mauvais identifiant ou mot de passe !';
+                $resultat = $this->getManager(MembersManager::class)->newConnexion($_POST['pseudo']);
+
+                if ($_POST["pseudo"] !== $resultat["pseudo"]){
+                    $error[] = "Pseudo inexistant";
+                } else if (!password_verify($_POST['password'], $resultat['pass'])) {
+                    $error[] = "Mot de passe erronée";
+                } else {
+                    $_SESSION['id'] = $resultat['id'];
+                    $_SESSION['pseudo'] = $_POST['pseudo'];
+                    $this->redirect('index.php');
+                }
             }
         }
+        $this->render("frontend/connexionView.php", [
+            "error" => $error              
+        ]);    
     }
 
     public function deconnexion()

@@ -2,7 +2,7 @@
 
 <h1>Inscription</h1>
 
-<form action="index.php?action=createNewMember" method="post">
+<form method="post">
     <div class="form-group">
         <label for="pseudo">Pseudo</label><br />
         <input class="form-control" type="text" id="pseudo" name="pseudo" required/>
@@ -15,7 +15,13 @@
         <label for="password">Password</label><br />
         <input class="form-control" type="password" id="password" name="password" required></input>
     </div>
+    <?php 
+    foreach ($errors as $error){
+        echo $error;
+    }
+    ?>
     <div>
+    </br>
         <input type="submit" class="btn btn-primary" />
     </div>
 </form>

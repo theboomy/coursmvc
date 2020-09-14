@@ -14,19 +14,31 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
+            <?php
+                if (!isset($_SESSION['id'], $_SESSION['pseudo'])) {
+            ?>
             <li class="nav-item">
                 <a class="nav-link" href="index.php?action=incription">Inscription</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="index.php?action=connect">Connexion</a>
             </li>
+            <?php
+            };
+            ?>
+            <?php
+                if (isset($_SESSION['id']) and isset($_SESSION['pseudo'])) {
+            ?>
             <li class="nav-item">
                 <a class="nav-link" href="index.php?action=deconnexion">Deconnexion</a>
             </li>
+            <?php
+            };
+            ?>
         </ul>
         <span class="navbar-text">
             <?php
-            if (isset($_SESSION['id']) and isset($_SESSION['pseudo'])) {
+                if (isset($_SESSION['id']) and isset($_SESSION['pseudo'])) {
             ?>
                 Bonjour <?= $_SESSION['pseudo'] ?> </h1>
             <?php
