@@ -26,7 +26,7 @@ class FrontController extends Controller
                 
                 $resultat = $this->getManager(MembersManager::class)->newConnexion($_POST['pseudo']);
 
-                if($_POST["pseudo"] === $resultat["pseudo"]){
+                if($resultat["pseudo"]){
                     $errors[] = "Pseudonyme déjà utilisé";
                 } else if (!preg_match("#^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$#", $_POST['email'])){
                     $errors[] = "Email non valide";
@@ -55,7 +55,7 @@ class FrontController extends Controller
 
                 $resultat = $this->getManager(MembersManager::class)->newConnexion($_POST['pseudo']);
 
-                if ($_POST["pseudo"] !== $resultat["pseudo"]){
+                if (!$resultat["pseudo"]){
                     $error[] = "Pseudo inexistant";
                 } else if (!password_verify($_POST['password'], $resultat['pass'])) {
                     $error[] = "Mot de passe erronée";

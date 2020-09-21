@@ -30,7 +30,7 @@ if (isset($_SESSION['id']) and isset($_SESSION['pseudo'])) {
 ?>
     <form action="index.php?action=addPost" method="post">
         <div class="form-group">
-            <input id="title" name="title" type="text" class="form-control" placeholder="Title" aria-label="Title">
+            <input id="title" name="title" type="text" class="form-control" placeholder="Title" aria-label="Title" autocomplete="off">
         </div>
         <div class="form-group">
             <textarea id="content" name="content" class="form-control" rows="3" placeholder="Content"></textarea>
